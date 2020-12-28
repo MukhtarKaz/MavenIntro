@@ -1,0 +1,56 @@
+
+Maven commands
+
+In terminal, go to project folder(untill POM file location)
+
+1.  mvn clean  - cleans all previous tests
+2. mvn compile - checks sintax errors
+3. mvn test  -  run test
+
+
+ Always include word test in class name for tests. Otherwise maven will skip it during test
+ 
+ C:\Users\mukht\.m2  -- location of downloaded repos
+ 
+ 
+ // include TestMG xml files in Maven project
+ 
+ 1.  create testNg xml by ProjectName(context) -> testNg-> convert to TestNg
+ 2.  Copy from surefire site  -> using testng  
+ 		<configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+ 
+ 
+ Running a Single Test
+ mvn -Dtest=TestCircle test
+ 
+ 
+ Profiling to control test flow
+ 
+ add Pom profile with xml file.
+ <profiles>
+	<profile>
+	<id>Smoke</id>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.0.0-M5</version>
+					<configuration>
+						<suiteXmlFiles>
+							<suiteXmlFile>testng.xml</suiteXmlFile>
+						</suiteXmlFiles>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	</profile>
+	</profiles>
+
+	command mvn test -P profileName  - to launch profile test
